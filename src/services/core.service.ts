@@ -41,23 +41,15 @@ export class CoreService extends Camera {
     const { width, height } = this.canvas;
     this.ctx.clearRect(0, 0, width, height);
 
-    if (segmentationMask && this.background.src) {
-      this.ctx.drawImage(segmentationMask, 0, 0, width, height);
-      const mask = this.ctx.getImageData(0, 0, width, height);
-
-      for (let i = 0; i < mask.data.length; i += 4) {
-        if (Math.log(255 / mask.data[i + 3]) / Math.log(mask.data[i + 3]) > 0.5)
-          mask.data[i + 3] = 0;
-      }
-
-      this.ctx.putImageData(mask, 0, 0);
-    }
-
     // Only overwrite existing pixels.
     if (this.background.src) {
+      if (segmentationMask)
+        this.ctx.drawImage(segmentationMask, 0, 0, width, height);
+
       const ratio =
         (this.canvas.height / this.background.videoHeight) *
         this.background.videoWidth;
+
       this.ctx.globalCompositeOperation = "source-out";
       this.ctx.drawImage(
         this.background,
