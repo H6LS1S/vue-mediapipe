@@ -1,0 +1,1 @@
+*{margin:0;padding:0}body{overflow:hidden;background:#e1e1e1}#app{height:100vh;display:flex;justify-content:space-around}#backgrounds{width:70vw;display:block;overflow:auto}#clear,video{width:16vw;height:9vw;margin:1vh 1vw;display:inline-block}canvas{width:43vw;margin:5vh auto;display:block;-o-object-fit:contain;object-fit:contain}
