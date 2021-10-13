@@ -58,7 +58,7 @@ export default class App extends Vue {
   }
 
   public async mounted(): Promise<void> {
-    this.background.crossOrigin = "";
+    this.background.crossOrigin = "Anonymous";
     this.background.autoplay = true;
     this.background.loop = true;
 

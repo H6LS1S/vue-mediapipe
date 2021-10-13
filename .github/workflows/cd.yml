@@ -1,0 +1,29 @@
+name: CD
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create Node Environment
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 10.x
+                
+      - name: Install Packages and Build Application
+        run: |
+          npm install -g @vue/cli
+          npm install
+          npm run build
+          
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

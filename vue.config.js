@@ -1,6 +1,3 @@
 module.exports = {
-  publicPath:
-    process.env.NODE_ENV === "production"
-      ? `/${process.env.packenpm_package_name}/`
-      : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/vue-mediapipe/" : "/",
 };
